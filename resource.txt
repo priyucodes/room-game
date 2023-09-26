@@ -14,6 +14,14 @@ https://sourceforge.net/projects/aseprite.mirror/
 https://www.reddit.com/r/godot/comments/q7g59l/i_recently_discovered_that_aseprite_is_free/
 
 
+we use spritesheet for animmation in canvas html5 mode
+Sprite Sheet
+https://www.codeandweb.com/texturepacker
+https://www.piskelapp.com/
+https://www.codeandweb.com/free-sprite-sheet-packer
+https://www.pixilart.com/draw/sprite-sheet-48f26ce7da9d4e7
+https://www.piskelapp.com/p/create/sprite
+https://codeshack.io/images-sprite-sheet-generator/
 
 
 https://phaser.io/tutorials/making-your-first-phaser-3-game

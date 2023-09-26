@@ -16,7 +16,11 @@ const backgroundLevel1 = new Sprite({
   position: { x: 0, y: 0 },
   imageSrc: "./assets/img/backgroundLevel1.png",
 });
-const player = new Player({ collisionBlocks });
+const player = new Player({
+  collisionBlocks,
+  imageSrc: "./assets/img/king/idle.png",
+  frameRate: 11,
+});
 
 const keys = {
   w: {

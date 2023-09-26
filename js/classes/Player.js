@@ -1,7 +1,8 @@
 // https://stackoverflow.com/questions/49091584/javascript-es6-addeventlistener-inside-class
 // https://stackoverflow.com/questions/49091584/javascript-es6-addeventlistener-inside-class
-class Player {
-  constructor({ collisionBlocks = [] }) {
+class Player extends Sprite {
+  constructor({ collisionBlocks = [], imageSrc, frameRate }) {
+    super({ imageSrc, frameRate }); // call parent class constructor
     this.position = {
       x: 193,
       y: 200,
@@ -11,8 +12,9 @@ class Player {
       x: 0,
       y: 0,
     }; // pixel / frame
-    this.width = 25;
-    this.height = 25;
+    // we get from sprite
+    // this.width = 25;
+    // this.height = 25;
     this.sides = {
       bottom: this.position.y + this.height,
     };
@@ -57,11 +59,14 @@ class Player {
       lastKeyDownTime = currentTime;
     }
   }
-  draw() {
-    c.fillStyle = "red";
-    c.fillRect(this.position.x, this.position.y, this.width, this.height);
-  }
+  // draw() {
+  //   c.fillStyle = "red";
+  //   c.fillRect(this.position.x, this.position.y, this.width, this.height);
+  // }
   update() {
+    // this is blue outer box of sprite
+    //   c.fillStyle = "rgba(0,0,255,.5)";
+    //   c.fillRect(this.position.x, this.position.y, this.width, this.height);
     this.position.x += this.velocity.x;
 
     this.checkForHorizontalCollision();
