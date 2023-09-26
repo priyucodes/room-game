@@ -68,12 +68,19 @@ class Player extends Sprite {
     //   c.fillStyle = "rgba(0,0,255,.5)";
     //   c.fillRect(this.position.x, this.position.y, this.width, this.height);
     this.position.x += this.velocity.x;
+    this.updateHitbox();
 
     this.checkForHorizontalCollision();
 
     this.applyGravity();
     // this.sides.bottom = this.position.y + this.height;
-
+    this.updateHitbox();
+    // c.fillRect(
+    //   this.hitbox.position.x,
+    //   this.hitbox.position.y,
+    //   this.hitbox.width,
+    //   this.hitbox.height
+    // );
     // check for vertical collision
     this.checkForVerticalCollision();
 
@@ -81,6 +88,13 @@ class Player extends Sprite {
     // if (this.sides.bottom + this.velocity.y < canvas.height) {
     //   // this.position.y++;
     // } else this.velocity.y = 0;
+  }
+  updateHitbox() {
+    this.hitbox = {
+      position: { x: this.position.x + 60, y: this.position.y + 34 },
+      width: 50,
+      height: 53,
+    };
   }
   checkForHorizontalCollision() {
     //  you can use 'every' method for this. It will stop iterating when falsy value is returned from callback
@@ -93,20 +107,29 @@ class Player extends Sprite {
       const collisionBlock = this.collisionBlocks[i];
       // this.position.x left side of the player
       if (
-        this.position.x <= collisionBlock.position.x + collisionBlock.width &&
-        this.position.x + this.width >= collisionBlock.position.x &&
-        this.position.y + this.height >= collisionBlock.position.y &&
-        this.position.y <= collisionBlock.position.y + collisionBlock.height
+        this.hitbox.position.x <=
+          collisionBlock.position.x + collisionBlock.width &&
+        this.hitbox.position.x + this.hitbox.width >=
+          collisionBlock.position.x &&
+        this.hitbox.position.y + this.hitbox.height >=
+          collisionBlock.position.y &&
+        this.hitbox.position.y <=
+          collisionBlock.position.y + collisionBlock.height
       ) {
         // colliding from every side, left, right, bottom and top
         // collion on x axis going to the left side of the player
+        // going to the left
         if (this.velocity.x < 0) {
+          const offset = this.hitbox.position.x - this.position.x;
           this.position.x =
-            collisionBlock.position.x + collisionBlock.width + 0.01; // 0.01 is buffer
+            collisionBlock.position.x + collisionBlock.width - offset + 0.01; // 0.01 is buffer
           break;
         }
+        //going to the right
         if (this.velocity.x > 0) {
-          this.position.x = collisionBlock.position.x - this.width - 0.01; // 0.01 is buffer
+          const offset =
+            this.hitbox.position.x - this.position.x + this.hitbox.width;
+          this.position.x = collisionBlock.position.x - offset - 0.01; // 0.01 is buffer
           break;
         }
       }
@@ -120,23 +143,33 @@ class Player extends Sprite {
     for (let i = 0; i < this.collisionBlocks.length; i++) {
       const collisionBlock = this.collisionBlocks[i];
       if (
-        this.position.x <= collisionBlock.position.x + collisionBlock.width &&
-        this.position.x + this.width >= collisionBlock.position.x &&
-        this.position.y + this.height >= collisionBlock.position.y &&
-        this.position.y <= collisionBlock.position.y + collisionBlock.height
+        this.hitbox.position.x <=
+          collisionBlock.position.x + collisionBlock.width &&
+        this.hitbox.position.x + this.hitbox.width >=
+          collisionBlock.position.x &&
+        this.hitbox.position.y + this.hitbox.height >=
+          collisionBlock.position.y &&
+        this.hitbox.position.y <=
+          collisionBlock.position.y + collisionBlock.height
       ) {
         // colliding from every side, left, right, bottom and top
         // collion on x axis going to the left side of the player
+
+        // going upwards/jump
         if (this.velocity.y < 0) {
           this.velocity.y = 0; // fixing player going down through the block
+          const offset = this.hitbox.position.y - this.position.y;
           this.position.y =
-            collisionBlock.position.y + collisionBlock.height + 0.01; // 0.01 is buffer
+            collisionBlock.position.y + collisionBlock.height - offset + 0.01; // 0.01 is buffer
           break;
         }
+
+        // fallin down
         if (this.velocity.y > 0) {
           this.velocity.y = 0; // fixing player going down
-
-          this.position.y = collisionBlock.position.y - this.height - 0.01; // 0.01 is buffer
+          const offset =
+            this.hitbox.position.y - this.position.y + this.hitbox.height;
+          this.position.y = collisionBlock.position.y - offset - 0.01; // 0.01 is buffer
           break;
         }
       }
