@@ -10,6 +10,19 @@ canvas.height = 64 * 9; //576;
 // our game will use 64 pixe x 64 pixels tiles
 
 const player = new Player();
+
+const keys = {
+  w: {
+    pressed: false,
+  },
+  a: {
+    pressed: false,
+  },
+
+  d: {
+    pressed: false,
+  },
+};
 function animate() {
   // https://stackoverflow.com/questions/19764018/controlling-fps-with-requestanimationframe
   window.requestAnimationFrame(animate);
@@ -17,6 +30,12 @@ function animate() {
   // c.clearRect(0, 0, canvas.width, canvas.height); it gets clear of everything like bg color
   c.fillStyle = "white";
   c.fillRect(0, 0, canvas.width, canvas.height);
+
+  player.velocity.x = 0;
+
+  if (keys.d.pressed) player.velocity.x = 5;
+  else if (keys.a.pressed) player.velocity.x = -5;
+
   player.draw();
   player.update();
 }
@@ -25,31 +44,3 @@ function animate() {
 animate();
 
 // https://stackoverflow.com/questions/43958030/how-can-i-make-canvas-drawing-work-on-mobile
-// Touch event
-window.addEventListener("keydown", e => {
-  switch (e.key) {
-    // Me using switch after long time When a case matches, if you don't break, it will continue onto the next case regardless of whether it matches the condition.
-
-    case "w":
-      if (player.velocity.y === 0) {
-        player.jump();
-      }
-
-      // double jump logic
-
-      // doubleJump() {
-      //   if (this.jumpCount < this.jumpMax) {
-      //     this.velocity.y = -20;
-      //     this.jumpCount++;
-      //     console.log(this.jumpCount);
-      //   }
-      // }
-      break;
-    case "a":
-      player.velocity.x = -10;
-      break;
-    case "d":
-      player.velocity.x = 10;
-      break;
-  }
-});
