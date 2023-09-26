@@ -1,0 +1,29 @@
+<!--  Canvas (bitmaps) · 2. SVG (vectors) · 3. WebGL (3d). -->
+<!-- The canvas element provides scripts with a resolution-dependent bitmap canvas, which can be used for rendering graphs, game graphics, art, or other visual images on the fly.
+
+ -->
+<style>
+  body {
+    background-color: #000;
+  }
+</style>
+<!-- character collision -->
+
+<canvas></canvas>
+<!-- 
+You can have a responsive canvas in 3 short and simple steps:
+
+Remove the width and height attributes from your <canvas>.
+
+<canvas id="responsive-canvas"></canvas>
+Using CSS, set the width of your canvas to 100%.
+
+#responsive-canvas {
+  width: 100%;
+}
+Using JavaScript, set the height to some ratio of the width.
+
+var canvas = document.getElementById('responsive-canvas');
+var heightRatio = 1.5;
+canvas.height = canvas.width * heightRatio; -->
+<script src="index.js"></script>
