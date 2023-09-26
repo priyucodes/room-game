@@ -23,3 +23,33 @@ function animate() {
 // https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwidth-scrollwidth-and-height-respectively
 
 animate();
+
+// https://stackoverflow.com/questions/43958030/how-can-i-make-canvas-drawing-work-on-mobile
+// Touch event
+window.addEventListener("keydown", e => {
+  switch (e.key) {
+    // Me using switch after long time When a case matches, if you don't break, it will continue onto the next case regardless of whether it matches the condition.
+
+    case "w":
+      if (player.velocity.y === 0) {
+        player.jump();
+      }
+
+      // double jump logic
+
+      // doubleJump() {
+      //   if (this.jumpCount < this.jumpMax) {
+      //     this.velocity.y = -20;
+      //     this.jumpCount++;
+      //     console.log(this.jumpCount);
+      //   }
+      // }
+      break;
+    case "a":
+      player.velocity.x = -10;
+      break;
+    case "d":
+      player.velocity.x = 10;
+      break;
+  }
+});
