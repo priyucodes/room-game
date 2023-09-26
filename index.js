@@ -9,6 +9,9 @@ canvas.width = 64 * 16; //1024;
 canvas.height = 64 * 9; //576;
 // our game will use 64 pixe x 64 pixels tiles
 
+const parsedCollisions = collisionsLevel1.parse2D();
+const collisionBlocks = parsedCollisions.createObjectsFrom2D();
+
 const backgroundLevel1 = new Sprite({
   position: { x: 0, y: 0 },
   imageSrc: "./assets/img/backgroundLevel1.png",
@@ -35,6 +38,9 @@ function animate() {
   // c.fillStyle = "white";
   // c.fillRect(0, 0, canvas.width, canvas.height);
   backgroundLevel1.draw(); // overwrite above things done to canvas
+  collisionBlocks.forEach(collisionBlock => {
+    collisionBlock.draw();
+  });
   player.velocity.x = 0;
 
   if (keys.d.pressed) player.velocity.x = 5;

@@ -2,7 +2,27 @@ https://www.mapeditor.org/
 https://itch.io/
 https://pixelfrog-assets.itch.io/kings-and-pigs
 
+[FREE] 
+https://libresprite.github.io/#!/downloads
+  
+[PAID]
+https://www.aseprite.org/
+https://www.youtube.com/watch?v=WKeNJh_gIJU&ab_channel=BhavyanshJain
+^ Run Aseprite for sort of free. 
+Available Trial version on their website and https://sourceforge.net/projects/aseprite.mirror/
+https://sourceforge.net/projects/aseprite.mirror/
+https://www.reddit.com/r/godot/comments/q7g59l/i_recently_discovered_that_aseprite_is_free/
+
+
+
 
 https://phaser.io/tutorials/making-your-first-phaser-3-game
 https://phaser.io/tutorials/getting-started-phaser3
 https://phaser.io/examples
+
+
+
+photoshop alternative
+https://www.gimp.org/
+
+game design software
