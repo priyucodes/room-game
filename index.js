@@ -9,6 +9,10 @@ canvas.width = 64 * 16; //1024;
 canvas.height = 64 * 9; //576;
 // our game will use 64 pixe x 64 pixels tiles
 
+const backgroundLevel1 = new Sprite({
+  position: { x: 0, y: 0 },
+  imageSrc: "./assets/img/backgroundLevel1.png",
+});
 const player = new Player();
 
 const keys = {
@@ -28,9 +32,9 @@ function animate() {
   window.requestAnimationFrame(animate);
   // clear canvas for every frame of animation
   // c.clearRect(0, 0, canvas.width, canvas.height); it gets clear of everything like bg color
-  c.fillStyle = "white";
-  c.fillRect(0, 0, canvas.width, canvas.height);
-
+  // c.fillStyle = "white";
+  // c.fillRect(0, 0, canvas.width, canvas.height);
+  backgroundLevel1.draw(); // overwrite above things done to canvas
   player.velocity.x = 0;
 
   if (keys.d.pressed) player.velocity.x = 5;

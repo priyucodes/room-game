@@ -1,3 +1,5 @@
+// https://stackoverflow.com/questions/49091584/javascript-es6-addeventlistener-inside-class
+// https://stackoverflow.com/questions/49091584/javascript-es6-addeventlistener-inside-class
 class Player {
   constructor() {
     this.position = {
