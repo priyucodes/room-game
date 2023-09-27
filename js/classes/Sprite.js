@@ -1,5 +1,5 @@
 class Sprite {
-  constructor({ position, imageSrc, frameRate = 1 }) {
+  constructor({ position, imageSrc, frameRate = 1, animations }) {
     this.position = position;
     this.image = new Image();
     this.image.onload = () => {
@@ -13,7 +13,16 @@ class Sprite {
     this.frameRate = frameRate;
     this.currentFrame = 0;
     this.elapsedFrames = 0;
-    this.frameBuffer = 4;
+    this.frameBuffer = 2;
+    this.animations = animations;
+
+    if (this.animations) {
+      for (let key in this.animations) {
+        const image = new Image();
+        image.src = this.animations[key].imageSrc;
+        this.animations[key].image = image; // assigning new image property to animations object
+      }
+    }
   }
   draw() {
     // bang operator or guard clause

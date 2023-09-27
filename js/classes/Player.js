@@ -1,8 +1,8 @@
 // https://stackoverflow.com/questions/49091584/javascript-es6-addeventlistener-inside-class
 // https://stackoverflow.com/questions/49091584/javascript-es6-addeventlistener-inside-class
 class Player extends Sprite {
-  constructor({ collisionBlocks = [], imageSrc, frameRate }) {
-    super({ imageSrc, frameRate }); // call parent class constructor
+  constructor({ collisionBlocks = [], imageSrc, frameRate, animations }) {
+    super({ imageSrc, frameRate, animations }); // call parent class constructor
     this.position = {
       x: 193,
       y: 200,
@@ -15,7 +15,7 @@ class Player extends Sprite {
     // we get from sprite
     // this.width = 25;
     // this.height = 25;
-    this.height;
+    // this.height;
     this.sides = {
       bottom: this.position.y + this.height,
     };
@@ -43,7 +43,7 @@ class Player extends Sprite {
   double(event) {
     let lastKeyDownTime = 0;
 
-    const doubleKeyDownInterval = this.sides.bottom;
+    // const doubleKeyDownInterval = this.sides.bottom;
 
     if (event.key === "w") {
       const currentTime = new Date().getTime();
@@ -90,6 +90,13 @@ class Player extends Sprite {
     // if (this.sides.bottom + this.velocity.y < canvas.height) {
     //   // this.position.y++;
     // } else this.velocity.y = 0;
+  }
+  switchSprite(name) {
+    if (this.image === this.animations[name].image) return;
+    this.currentFrame = 0;
+    this.image = this.animations[name].image;
+    this.frameRate = this.animations[name].frameRate;
+    this.frameBuffer = this.animations[name].frameBuffer;
   }
   updateHitbox() {
     this.hitbox = {
