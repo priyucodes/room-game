@@ -105,9 +105,9 @@ class Player extends Sprite {
       this.velocity.x = -5;
       this.lastDirection = "left";
     } else {
-      if (this.lastDirection === "left") {
+      if (this.lastDirection === "left" || level === 3) {
         this.switchSprite("idleLeft");
-      } else this.switchSprite("idleRight");
+      } else if (this.lastDirection === "right") this.switchSprite("idleRight");
     }
   }
   switchSprite(name) {
@@ -117,6 +117,7 @@ class Player extends Sprite {
     this.frameRate = this.animations[name].frameRate;
     this.frameBuffer = this.animations[name].frameBuffer;
     this.loop = this.animations[name].loop;
+    this.currentAnimation = this.animations[name];
   }
   updateHitbox() {
     this.hitbox = {

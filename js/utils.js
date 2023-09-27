@@ -14,7 +14,7 @@ Array.prototype.createObjectsFrom2D = function () {
   const objects = [];
   this.forEach((row, y) => {
     row.forEach((symbol, x) => {
-      if (symbol === 292) {
+      if (symbol === 292 || symbol === 250) {
         console.log("found a wall");
         // Push a new collision into collsion block array
         objects.push(
