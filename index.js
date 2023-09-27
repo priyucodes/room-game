@@ -20,6 +20,7 @@ const player = new Player({
   collisionBlocks,
   imageSrc: "./assets/img/king/idle.png",
   frameRate: 11,
+
   animations: {
     idleRight: {
       frameRate: 11,
@@ -45,8 +46,30 @@ const player = new Player({
       loop: true,
       imageSrc: "./assets/img/king/runLeft.png",
     },
+    enterDoor: {
+      frameRate: 8,
+      frameBuffer: 4,
+      loop: false,
+      imageSrc: "./assets/img/king/enterDoor.png",
+    },
   },
 });
+
+const doors = [
+  new Sprite({
+    position: {
+      x: 767,
+      // height of the whole scene - height of the door, you can do it by checking through the tile map editor
+      y: 382 - 112,
+    },
+    imageSrc: "./assets/img/doorOpen.png",
+    frameRate: 5,
+    frameBuffer: 6,
+    loop: false,
+    animations: {},
+    autoplay: false,
+  }),
+];
 
 const keys = {
   w: {
@@ -71,22 +94,11 @@ function animate() {
   collisionBlocks.forEach(collisionBlock => {
     collisionBlock.draw();
   });
-  player.velocity.x = 0;
+  doors.forEach(door => {
+    door.draw();
+  });
 
-  if (keys.d.pressed) {
-    player.switchSprite("runRight");
-    player.velocity.x = 5;
-    player.lastDirection = "right";
-  } else if (keys.a.pressed) {
-    player.switchSprite("runLeft");
-
-    player.velocity.x = -5;
-    player.lastDirection = "left";
-  } else {
-    if (player.lastDirection === "left") {
-      player.switchSprite("idleLeft");
-    } else player.switchSprite("idleRight");
-  }
+  player.handleInput(keys);
   player.draw();
   player.update();
 }
