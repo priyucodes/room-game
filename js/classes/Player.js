@@ -15,6 +15,7 @@ class Player extends Sprite {
     // we get from sprite
     // this.width = 25;
     // this.height = 25;
+    this.height;
     this.sides = {
       bottom: this.position.y + this.height,
     };
@@ -28,7 +29,7 @@ class Player extends Sprite {
   jump = () => {
     this.jumpCount = 0;
     this.totalJump = this.jumpCount;
-    this.velocity.y = -20;
+    this.velocity.y = -15;
     this.totalJump++;
 
     document.addEventListener("keydown", this.double.bind(this));
@@ -46,13 +47,14 @@ class Player extends Sprite {
 
     if (event.key === "w") {
       const currentTime = new Date().getTime();
+      const btmOfChar = this.position.y + this.height;
 
       if (
-        currentTime - lastKeyDownTime > doubleKeyDownInterval &&
+        currentTime - lastKeyDownTime > btmOfChar &&
         this.totalJump < this.jumpMax
       ) {
         console.log("double jump");
-        this.velocity.y = -20;
+        this.velocity.y = -15;
         this.totalJump++;
       }
 
