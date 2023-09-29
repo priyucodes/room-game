@@ -34,3 +34,7 @@ photoshop alternative
 https://www.gimp.org/
 
 game design software
+
+
+img- sprite sheet
+https://codeshack.io/images-sprite-sheet-generator/
